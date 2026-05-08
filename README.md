@@ -1,4 +1,4 @@
-# ODE Solver (In Progress)
+# ODE Solver (v1)
 
 A Python-based tool for solving systems of ordinary differential equations (ODEs), currently under active development.
 
