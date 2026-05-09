@@ -1,6 +1,6 @@
 # Builds coefficients via finite differences (no symbolic algebra needed).
 
-from determinant import det
+from utils.determinant import det
 
 def char_poly_coeffs(A: list) -> list:
     n = len(A)

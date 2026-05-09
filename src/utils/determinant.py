@@ -17,7 +17,7 @@ def minor(matrix: list, row: int, col: int) -> float:
             sub.append(new_row)
     
     return det(sub) 
-~
+
 def cofactor(term: int, matrix: list, row: int, col: int):
     return  (-1)**(row + col) * minor(matrix, row, col)
  

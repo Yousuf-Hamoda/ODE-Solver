@@ -4,9 +4,9 @@
 
 import cmath
 import math
-from polynomial import char_poly_coeffs
-from root_solver import find_roots, clean_roots
-from gauss_elim import gauss_eliminate
+from services.polynomial import char_poly_coeffs
+from services.root_solver import find_roots, clean_roots
+from utils.gauss_elim import gauss_eliminate
 
 
 def _null_vector(A: list, lam: complex) -> list:
