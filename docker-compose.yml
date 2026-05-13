@@ -1,7 +1,7 @@
 services:
   api:
     image: ghcr.io/yousuf-hamoda/ode-solver-api:latest
-    container_name: matrix-api
+    container_name: ode-solver-api
     restart: unless-stopped
     ports:
       - "5050:5050"
@@ -10,10 +10,10 @@ services:
 
   web:
     image: ghcr.io/yousuf-hamoda/ode-solver-web:latest
-    container_name: matrix-web
+    container_name: ode-solver-web
     restart: unless-stopped
     ports:
-      - "5173:5173"
+      - "8024:8024"
     depends_on:
       - api
     labels:
