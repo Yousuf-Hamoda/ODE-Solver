@@ -4,7 +4,7 @@ WORKDIR /app
 COPY src/requirements.txt .
 RUN pip install -r requirements.txt
 COPY src/ .
-CMD ["python", "api.py"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5050", "api:app"]
 
 # ---- Web stage ----
 FROM node:20-alpine AS web
