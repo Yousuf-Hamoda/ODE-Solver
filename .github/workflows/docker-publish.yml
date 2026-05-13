@@ -26,15 +26,15 @@ jobs:
       - name: Build and push API image
         uses: docker/build-push-action@v5
         with:
-          context: ./src
-          file: ./src/Dockerfile
+          context: .
+          target: api
           push: true
           tags: ghcr.io/yousuf-hamoda/ode-solver-api:latest
 
       - name: Build and push web image
         uses: docker/build-push-action@v5
         with:
-          context: ./web-server
-          file: ./web-server/Dockerfile
+          context: .
+          target: web
           push: true
           tags: ghcr.io/yousuf-hamoda/ode-solver-web:latest
