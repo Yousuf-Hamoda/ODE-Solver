@@ -1,0 +1,36 @@
+services:
+  api:
+    build:
+      context: ./src
+    image: ghcr.io/Yousuf-Hamoda/ODE-Solver-api:latest
+    container_name: matrix-api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  web:
+    build:
+      context: ./web-server
+    image: ghcr.io/Yousuf-Hamoda/ODE-Solver-web:latest
+    container_name: matrix-web
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=300
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
