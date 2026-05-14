@@ -3,6 +3,14 @@
 A zero-dependency ODE solver in pure Python that resolves linear systems of ordinary differential equations using Linear Algebra, with no reliance on NumPy or SciPy. Now ships with a fully deployed React web interface.
 
 ---
+ 
+## Live Demo
+ 
+🔗 **[ode.sofahomelab.xyz](https://ode.sofahomelab.xyz)**
+ 
+![ODE Solver Web Interface](./assets/Showcase-Img-ODE.png)
+ 
+---
 
 ## How It Works
 
