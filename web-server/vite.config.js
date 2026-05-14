@@ -7,5 +7,6 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 8024,
     strictPort: true,
+    allowedHosts: ["ode.sofahomelab.xyz", "ode.sofahomelab.io"],
   },
 })
