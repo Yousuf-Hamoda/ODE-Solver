@@ -15,8 +15,8 @@ export default function ErrorBanner({ message }) {
     <div
       role="alert"
       style={{
-        background: 'rgba(248, 113, 113, 0.08)',
-        border: '1px solid rgba(248, 113, 113, 0.3)',
+        background: 'rgba(220, 38, 38, 0.06)',
+        border: '1px solid rgba(220, 38, 38, 0.25)',
         borderRadius: 'var(--radius-sm)',
         padding: '12px 14px',
         color: 'var(--danger)',

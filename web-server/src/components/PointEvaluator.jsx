@@ -21,6 +21,7 @@ export default function PointEvaluator({ evalT, setEvalT, evalResult, onEvaluate
       border: '1px solid var(--border)',
       borderRadius: 'var(--radius-lg)',
       padding: 20,
+      boxShadow: 'var(--shadow-sm)',
     }}>
       <p style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--accent)', fontWeight: 500, marginBottom: 12 }}>
         Evaluate at t

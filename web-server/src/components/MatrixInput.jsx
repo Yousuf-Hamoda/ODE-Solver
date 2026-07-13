@@ -17,6 +17,7 @@ export default function MatrixInput({ n, matrix, onChange, onDimChange }) {
       border: '1px solid var(--border)',
       borderRadius: 'var(--radius-lg)',
       padding: 18,
+      boxShadow: 'var(--shadow-sm)',
     }}>
       {/* Card header: label + dimension selector */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>

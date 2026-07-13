@@ -1,19 +1,19 @@
-/* ─── Design tokens ──────────────────────────────────────────────────── */
+/* ─── Design tokens — White + Gold modern theme ──────────────────────── */
 :root {
-  --bg:       #0d0f14;
-  --surface:  #14171f;
-  --surface2: #1c2030;
+  --bg:       #faf8f5;
+  --surface:  #ffffff;
+  --surface2: #f5f0e6;
 
-  --border:   rgba(255, 255, 255, 0.07);
-  --border2:  rgba(255, 255, 255, 0.14);
+  --border:   rgba(0, 0, 0, 0.06);
+  --border2:  rgba(0, 0, 0, 0.1);
 
-  --accent:   #6c8dfa;
-  --accent2:  #a78bfa;
-  --accent3:  #34d399;
+  --accent:   #c9a84c;
+  --accent2:  #d4af37;
+  --accent3:  #b8942e;
 
-  --text:     #e8eaf0;
-  --muted:    #7c8099;
-  --danger:   #f87171;
+  --text:     #1e1e2e;
+  --muted:    #8a8a9a;
+  --danger:   #dc2626;
 
   --mono: 'DM Mono', monospace;
   --sans: 'DM Sans', sans-serif;
@@ -21,6 +21,9 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 12px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* ─── Reset ──────────────────────────────────────────────────────────── */

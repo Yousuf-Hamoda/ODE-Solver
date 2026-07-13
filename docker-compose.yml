@@ -16,5 +16,7 @@ services:
       - "8024:8024"
     depends_on:
       - api
+    environment:
+      - API_URL=http://api:5050
     labels:
       - "com.centurylinklabs.watchtower.enable=true"

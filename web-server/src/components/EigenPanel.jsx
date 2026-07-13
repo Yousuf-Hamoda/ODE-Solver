@@ -36,7 +36,7 @@ function EigenCard({ index, eigenvalue, eigenvector }) {
       {/* Eigenvector row */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)' }}>v =</span>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: 12, color: '#b8bfd0' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--text)' }}>
           [ {eigenvector.map(formatComplex).join(', ')} ]
         </span>
       </div>
@@ -59,6 +59,7 @@ export default function EigenPanel({ eigenvalues, eigenvectors }) {
       border: '1px solid var(--border)',
       borderRadius: 'var(--radius-lg)',
       padding: 20,
+      boxShadow: 'var(--shadow-sm)',
     }}>
       <p style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--accent)', fontWeight: 500, marginBottom: 12 }}>
         Eigenvalues &amp; Eigenvectors

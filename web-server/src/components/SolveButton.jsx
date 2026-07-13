@@ -20,11 +20,12 @@ export default function SolveButton({ onClick, loading }) {
         fontSize: 15,
         fontWeight: 600,
         background: loading ? 'var(--surface2)' : 'var(--accent)',
-        color: loading ? 'var(--muted)' : '#0d0f14',
+        color: loading ? 'var(--muted)' : '#ffffff',
         marginBottom: 24,
         letterSpacing: 0.3,
         opacity: loading ? 0.7 : 1,
-        transition: 'opacity 0.2s, background 0.2s',
+        transition: 'opacity 0.2s, background 0.2s, box-shadow 0.2s',
+        boxShadow: loading ? 'none' : 'var(--shadow-sm)',
       }}
     >
       {loading ? 'Solving…' : 'Solve System'}

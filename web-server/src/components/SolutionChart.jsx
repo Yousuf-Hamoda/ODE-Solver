@@ -46,11 +46,11 @@ export default function SolutionChart({ result, dim }) {
           tooltip: {
             mode: 'index',
             intersect: false,
-            backgroundColor: '#1c2030',
-            borderColor: 'rgba(255,255,255,0.1)',
+            backgroundColor: '#ffffff',
+            borderColor: 'rgba(0,0,0,0.1)',
             borderWidth: 1,
-            titleColor: '#7c8099',
-            bodyColor: '#e8eaf0',
+            titleColor: '#8a8a9a',
+            bodyColor: '#1e1e2e',
             titleFont: { family: 'DM Mono' },
             bodyFont:  { family: 'DM Mono' },
             callbacks: {
@@ -61,14 +61,14 @@ export default function SolutionChart({ result, dim }) {
         scales: {
           x: {
             type: 'linear',
-            title: { display: true, text: 't', color: '#7c8099', font: { family: 'DM Mono' } },
-            grid:  { color: 'rgba(255,255,255,0.04)' },
-            ticks: { color: '#7c8099', font: { family: 'DM Mono', size: 11 } },
+            title: { display: true, text: 't', color: '#8a8a9a', font: { family: 'DM Mono' } },
+            grid:  { color: 'rgba(0,0,0,0.05)' },
+            ticks: { color: '#8a8a9a', font: { family: 'DM Mono', size: 11 } },
           },
           y: {
-            title: { display: true, text: 'x(t)', color: '#7c8099', font: { family: 'DM Mono' } },
-            grid:  { color: 'rgba(255,255,255,0.04)' },
-            ticks: { color: '#7c8099', font: { family: 'DM Mono', size: 11 } },
+            title: { display: true, text: 'x(t)', color: '#8a8a9a', font: { family: 'DM Mono' } },
+            grid:  { color: 'rgba(0,0,0,0.05)' },
+            ticks: { color: '#8a8a9a', font: { family: 'DM Mono', size: 11 } },
           },
         },
       },
@@ -85,6 +85,7 @@ export default function SolutionChart({ result, dim }) {
       border: '1px solid var(--border)',
       borderRadius: 'var(--radius-lg)',
       padding: 20,
+      boxShadow: 'var(--shadow-sm)',
     }}>
       {/* Card header */}
       <p style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--accent)', fontWeight: 500, marginBottom: 4 }}>

@@ -19,6 +19,12 @@ from services.root_solver import find_roots, clean_roots
 app = Flask(__name__)
 CORS(app)
 
+# ── Security limits for public deployment ──────────────────────────────────
+app.config['MAX_CONTENT_LENGTH'] = 64 * 1024  # 64 KB max request body
+
+# Maximum allowed matrix dimension (prevents abuse)
+MAX_DIM = 8
+
 
 def fmt_complex(z):
     """Serialize a complex number as {re, im}."""
@@ -40,6 +46,8 @@ def solve():
             return jsonify({"error": "Matrix must be square"}), 400
         if len(x0) != n:
             return jsonify({"error": "x0 must match matrix dimension"}), 400
+        if n < 2 or n > MAX_DIM:
+            return jsonify({"error": f"Matrix dimension must be between 2 and {MAX_DIM}"}), 400
 
         # Time points
         dt = (t_end - t_start) / max(t_steps - 1, 1)
