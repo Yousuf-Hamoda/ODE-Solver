@@ -9,7 +9,7 @@ CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5050", "api:app"]
 # ---- Web stage ----
 FROM node:20-alpine AS web
 WORKDIR /app
-COPY web-server/package*.json .
+COPY web-server/package*.json ./
 RUN npm install
 COPY web-server/ .
 CMD ["npm", "run", "dev", "--", "--host"]

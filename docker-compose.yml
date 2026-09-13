@@ -1,6 +1,10 @@
 services:
   api:
+    build:
+      context: .
+      target: api
     image: ghcr.io/yousuf-hamoda/ode-solver-api:latest
+    pull_policy: build
     container_name: ode-solver-api
     restart: unless-stopped
     ports:
@@ -9,7 +13,11 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
   web:
+    build:
+      context: .
+      target: web
     image: ghcr.io/yousuf-hamoda/ode-solver-web:latest
+    pull_policy: build
     container_name: ode-solver-web
     restart: unless-stopped
     ports:
