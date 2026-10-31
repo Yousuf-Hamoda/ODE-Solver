@@ -18,7 +18,7 @@ def minor(matrix: list, row: int, col: int) -> float:
     
     return det(sub) 
 
-def cofactor(term: int, matrix: list, row: int, col: int):
+def cofactor(matrix: list, row: int, col: int):
     return  (-1)**(row + col) * minor(matrix, row, col)
  
 def det(matrix: list) -> float:
@@ -28,7 +28,7 @@ def det(matrix: list) -> float:
     n = len(matrix)
  
     if n == 1:
-        return _val(matrix[0][0])
+        return matrix[0][0]
  
     if n == 2:
         return matrix[0][0] * matrix[1][1] - \
