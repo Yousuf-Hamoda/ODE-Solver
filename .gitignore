@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Web build
+web-server/node_modules/
+web-server/dist/
+npm-debug.log*
+
+# Local run state
+run/
