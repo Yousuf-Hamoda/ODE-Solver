@@ -9,52 +9,57 @@ from services.root_solver import find_roots, clean_roots
 from utils.gauss_elim import gauss_eliminate
 
 
-def _null_vector(A: list, lam: complex) -> list:
-    # Return a non-trivial vector v such that (A - λI)v ≈ 0.
-    # Uses Gaussian elimination on (A - λI | 0) then back-substitutes.
-    
+def _null_vector(A: list, lam: complex, iterations: int = 3) -> list:
+    # Return a unit vector v such that (A - λI)v ≈ 0, via inverse iteration.
+    #
+    # λ is only an approximate root, so (A - λI) is nearly (not exactly)
+    # singular and elimination will not reliably expose a free variable.
+    # Inverse iteration instead solves (A - λI)y = v repeatedly: the
+    # component of v along the eigenvector is amplified by 1/|error in λ|,
+    # so a few solves converge to the eigenvector.
+
     n = len(A)
-    # Build (A - λI) augmented with zero column
-    M = [
-        [complex(A[i][j]) - (lam if i == j else 0) for j in range(n)] + [complex(0)]
+    scale = max(1.0, max(abs(A[i][j]) for i in range(n) for j in range(n)))
+    tiny = 1e-14 * scale
+
+    # LU factorisation of (A - λI) with partial pivoting.
+    LU = [
+        [complex(A[i][j]) - (lam if i == j else 0) for j in range(n)]
         for i in range(n)
     ]
-    M = gauss_eliminate(M)
+    perm = list(range(n))
+    for col in range(n):
+        best = max(range(col, n), key=lambda r: abs(LU[r][col]))
+        LU[col], LU[best] = LU[best], LU[col]
+        perm[col], perm[best] = perm[best], perm[col]
+        if abs(LU[col][col]) < tiny:
+            LU[col][col] = complex(tiny)    # exactly singular: nudge the pivot
+        for r in range(col + 1, n):
+            factor = LU[r][col] / LU[col][col]
+            LU[r][col] = factor
+            for c in range(col + 1, n):
+                LU[r][c] -= factor * LU[col][c]
 
-    # Identify free variables (columns with no pivot)
-    pivot_cols = []
-    for row in M:
-        for c in range(n):
-            if abs(row[c] - 1.0) < 1e-8 and all(abs(row[cc]) < 1e-8 for cc in range(n) if cc != c):
-                pivot_cols.append(c)
-                break
+    def lu_solve(b):
+        y = [b[perm[i]] for i in range(n)]
+        for i in range(n):
+            y[i] -= sum(LU[i][k] * y[k] for k in range(i))
+        for i in reversed(range(n)):
+            y[i] = (y[i] - sum(LU[i][k] * y[k] for k in range(i + 1, n))) / LU[i][i]
+        return y
 
-    free_cols = [c for c in range(n) if c not in pivot_cols]
-    if not free_cols:
-        free_cols = [n - 1]     # fallback
-
-    # Set free variable = 1, solve for pivot variables
-    v = [complex(0)] * n
-    for fc in free_cols:
-        v[fc] = complex(1)
-
-    for row in reversed(M):
-        # Find pivot of this row
-        pc = -1
-        for c in range(n):
-            if abs(row[c] - 1.0) < 1e-8:
-                pc = c
-                break
-        if pc == -1:
-            continue
-        v[pc] = -sum(row[c] * v[c] for c in range(n) if c != pc)
-
-    # Normalise
-    norm = math.sqrt(sum(abs(x) ** 2 for x in v))
-    if norm > 1e-12:
+    # Start from a vector unlikely to be orthogonal to the eigenvector.
+    v = [complex(1.0 + 0.1 * i) for i in range(n)]
+    for _ in range(iterations):
+        v = lu_solve(v)
+        norm = math.sqrt(sum(abs(x) ** 2 for x in v))
         v = [x / norm for x in v]
 
-    return v
+    # Fix the phase so the largest component is real and positive; this
+    # keeps the displayed eigenvectors stable and readable.
+    big = max(v, key=abs)
+    phase = abs(big) / big
+    return [x * phase for x in v]
 
 
 # ---------------------------------------------------------------------------
